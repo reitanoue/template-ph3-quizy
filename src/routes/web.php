@@ -11,6 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('hello.welcome');
-});
+use Whoops\Run;
+
+ Route::get('/', function () {
+     return view('hello.welcome');
+ });
+
+
+Route::get('/quiz/{id}', 'QuizyController@index'
+   );
+
