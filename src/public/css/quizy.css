@@ -70,7 +70,7 @@ h2::after {
     background-color: #00ab36; /*線の色*/
 }
 
-.box1 li {
+.choice-box{
     font-size: 16px;
     display: block;
     border: 1px solid #ebebeb;
@@ -135,17 +135,3 @@ body {
         "Hiragino Sans", "游ゴシック Medium", meiryo, sans-serif;
 }
 
-.tabber li a {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.tabber svg {
-    margin: 0 4vw;
-}
-
-
-.a{
-    background-color: #666666;
-}

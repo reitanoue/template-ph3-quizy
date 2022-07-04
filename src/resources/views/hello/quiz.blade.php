@@ -21,29 +21,31 @@
 
 <section class="container content-wrapper">
     @foreach ($big_question->questions as $question)
-    <h2> {{ $loop->iteration }}.この地名はなんて読む？</h2>
-    <div class="quiz-image-container">
-        <img class="quiz-image" src="{{ asset('storage/image/' . $question->image) }}" alt="問題の写真">
+    <div>
+        <h2> {{ $loop->iteration }}.この地名はなんて読む？</h2>
+        <div class="quiz-image-container">
+            <img class="quiz-image" src="{{ asset('storage/image/' . $question->image) }}" alt="問題の写真">
+        </div>
+        <div class="choice-boxes">
+            <ul id="ul-{{ $loop->iteration }}">
+                @foreach ($question->choices as $choice)
+                <li id="{{ $question->id }}_{{ $choice->id }}_{{ $choice->valid }}" onclick="buttonClick('{{ $question->id}}','{{ $choice->id}}','{{ $question->id }}_{{ $choice->id }}_{{ $choice->valid }}','{{ $question->id }}_{{ $choice->id }}_1')" class="choice-box">{{ $choice->name }}</li>
+                @endforeach
+            </ul>
+        </div>
+        <div class="quiz-result" id="ans-t-{{ $loop->iteration }}">
+            <p class="quiz-result-title quiz-result-title-succeeded">正解！</p>
+            <p class ="quiz-result-explanation">正解は「」です！</p>
+        </div>
+        <div class="quiz-result" id="ans-f-{{ $loop->iteration }}">
+            <p class="quiz-result-title quiz-result-title-failed">不正解！</p>
+            <p class ="quiz-result-explanation">正解は「」です！</p>
+        </div>
     </div>
-    <div class="box1">
-        <ul id="ul-{{ $loop->iteration }}">
-            @foreach ($question->choices as $choice)
-            <li id="{{ $loop->iteration }}-{{ $choice->id }}" onclick="onclickFunction({{ $loop->iteration }},{{ $choice->id }})">{{ $choice->name }}</li>
-            @endforeach
-        </ul>
-    </div>
-    <div class="quiz-result" id="ans-t-{{ $loop->iteration }}">
-        <p class="quiz-result-title quiz-result-title-succeeded">正解！</p>
-        <p class ="quiz-result-explanation">正解は「」です！</p>
-    </div>
-    <div class="quiz-result" id="ans-f-{{ $loop->iteration }}">
-        <p class="quiz-result-title quiz-result-title-failed">不正解！</p>
-        <p class ="quiz-result-explanation">正解は「」です！</p>
-    </div>
-    @endforeach
-</section>
-
-
+        @endforeach
+    </section>
+    
+    
     <script src="/js/quizy.js"></script>
 </body>
 
