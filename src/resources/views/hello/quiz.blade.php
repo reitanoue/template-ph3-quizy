@@ -44,8 +44,6 @@
     </div>
         @endforeach
     </section>
-    
-    
     <script src="/js/quizy.js"></script>
 </body>
 
