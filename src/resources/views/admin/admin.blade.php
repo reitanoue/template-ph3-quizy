@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>管理画面</title>
+    <title>大問管理画面</title>
 </head>
 <body>
 
     <ul>
         @foreach($big_questions as $big_question)
-        <li>{{ $big_question->name }}
+        <li>
+            <a href="/admin/questionAdmin/{{ $big_question->id }}">{{ $big_question->name }}</a>
             <div>
                 <a href="/admin/big_question/delete/{{ $big_question->id }}">大問削除</a>
                 <a href="/admin/big_question/edit/{{ $big_question->id }}">大問変更</a>

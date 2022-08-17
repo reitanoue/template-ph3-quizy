@@ -66,4 +66,11 @@ class AdminController extends Controller
         $big_question->delete();
         return redirect('admin/admin/index');
     }
+
+
+    public function questionIndex($id)
+    {
+        $big_question = BigQuestions::find($id);
+        return view('admin.questionAdmin', compact('id','big_question'));
+    }
 }

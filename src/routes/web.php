@@ -57,3 +57,9 @@ Route::post(
     '/admin/big_question/delete/{big_question_id}',
     'AdminController@bigQuestionDelete'
 );
+
+
+Route::get(
+    '/admin/questionAdmin/{big_question_id}',
+    'AdminController@questionIndex'
+);
