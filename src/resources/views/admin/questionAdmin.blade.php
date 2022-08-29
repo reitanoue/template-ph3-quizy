@@ -9,13 +9,17 @@
 </head>
 
 <body>
-    <div>
+    <ul>
         @foreach  ($big_question->questions as $question)
-            <a>
-                <img src="{{ asset('storage/image/' . $question->image) }}" width="200">
-            </a>
+            <li>
+                <a>
+                    <img src="{{ asset('storage/image/' . $question->image) }}" width="200">
+                </a>
+                <div><a href="/admin/question/delete/{{ $question->id }}">小問削除</a></div>
+            </li>
         @endforeach
-    </div>
+    </ul>
+    <div><a href="/admin/question/add/{{ $big_question->id }}">小問追加</a></div>
 </body>
 
 </html>

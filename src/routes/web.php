@@ -59,7 +59,31 @@ Route::post(
 );
 
 
+
+// nameにはルートパラメータを入れる（どこに飛ばしていいのか分からなくなるのを防ぐため）
 Route::get(
     '/admin/questionAdmin/{big_question_id}',
     'AdminController@questionIndex'
+)->name('admin.questionAdmin');
+
+
+Route::get(
+    '/admin/question/delete/{id}',
+    'AdminController@questionDeleteIndex'
+)->name('admin.question.delete');
+
+
+Route::post(
+    '/admin/question/delete/{id}',
+    'AdminController@questionDelete'
+);
+
+Route::get(
+    '/admin/question/add/{id}',
+    'AdminController@questionAddIndex'
+)->name('admin.question.add');
+
+Route::post(
+    '/admin/question/add/{id}',
+    'AdminController@questionAdd'
 );
