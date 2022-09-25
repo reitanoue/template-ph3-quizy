@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Questions extends Model
 {
-    protected $fillable = ['image'];
+    protected $fillable = ['image','choice'];
+    // protected $fillable = ['choice'];
     //
     public function choices()
     {

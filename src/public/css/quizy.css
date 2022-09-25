@@ -121,6 +121,11 @@ h2::after {
     background-color: #ff5128;
     color: #fff;
     list-style: none;
+    
+}
+
+.pointer{
+    pointer-events: none;
 }
 
 html {
