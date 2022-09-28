@@ -97,7 +97,7 @@ class AdminController extends Controller
     public function questionAdd(Request $request,$id)
     {
         $file = $request->file;
-        $fileName = $request->{'name'.$request->valid}.'.png' ;
+        $fileName = $request->{'name'.$request->valid} . '.png';
         $path = public_path('image/');
         $file->move($path, $fileName);
 
@@ -105,6 +105,21 @@ class AdminController extends Controller
         $question->big_question_id = $id;
         $question->image = $fileName;
         $question->save();
+        $question->save();
+        $question->choices()->saveMany([
+            new Choices([
+                'name' => $request->name1,
+                'valid' => intval($request->valid) === 1,
+            ]),
+            new Choices([
+                'name' => $request->name2,
+                'valid' => intval($request->valid) === 2,
+            ]),
+            new Choices([
+                'name' => $request->name3,
+                'valid' => intval($request->valid) === 3,
+            ]),
+        ]);
         $big_question_id = $question->big_question_id;
         return redirect()->route('admin.questionAdmin',['big_question_id'=>$big_question_id]);
     }

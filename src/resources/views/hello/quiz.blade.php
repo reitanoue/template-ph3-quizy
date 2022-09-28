@@ -20,36 +20,39 @@
     </section>
 
 
-<section class="container content-wrapper">
-    @foreach ($big_question->questions as $question)
-    <div>
-        <h2> {{ $loop->iteration }}.この地名はなんて読む？</h2>
-        <div class="quiz-image-container">
-            <img class="quiz-image" src="{{ asset('storage/image/' . $question->image) }}" alt="問題の写真">
-        </div>
-        <div class="choice-boxes">
-            <ul id="ul-{{ $question->id }}" class="choice-boxes">
-                @foreach ($question->choices as $choice)
-                <li id="{{ $question->id }}_{{ $loop->iteration }}_{{ $choice->valid }}" onclick="buttonClick('{{ $question->id }}','{{ $question->id }}_{{ $loop->iteration }}_{{ $choice->valid }}','{{ $question->id }}_{{ $loop->iteration }}_1')" class="choice-box">{{ $choice->name }}</li>
-                @endforeach
-            </ul>
-        </div>
-        <div class="quiz-result" id="ans-t-{{ $question->id }}">
-            <p class="quiz-result-title quiz-result-title-succeeded">正解！</p>
-            <p class ="quiz-result-explanation">正解は「{{ optional($question->choices->where('valid', '=', 1)->first())->name }}」です！</p>
-            {{-- バグあり --}}
-        </div>
-        <div class="quiz-result" id="ans-f-{{ $question->id }}">
-            <p class="quiz-result-title quiz-result-title-failed">不正解！</p>
-            <p class ="quiz-result-explanation">正解は「{{ optional($question->choices->where('valid', '=', 1)->first())->name  }}」です！</p>
-            {{-- バグあり --}}
+    <section class="container content-wrapper">
+        @foreach ($big_question->questions as $question)
+            <div>
+                <h2> {{ $loop->iteration }}.この地名はなんて読む？</h2>
+                <div class="quiz-image-container">
+                    <img class="quiz-image" src="{{ asset('image/' . $question->image) }}" alt="問題の写真">
+                </div>
+                <div class="choice-boxes">
+                    <ul id="ul-{{ $question->id }}" class="choice-boxes">
+                        @foreach ($question->choices as $choice)
+                            <li id="{{ $question->id }}_{{ $loop->iteration }}_{{ $choice->valid }}"
+                                onclick="buttonClick('{{ $question->id }}','{{ $question->id }}_{{ $loop->iteration }}_{{ $choice->valid }}','{{ $question->id }}_{{ $loop->iteration }}_1')"
+                                class="choice-box">{{ $choice->name }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                <div class="quiz-result" id="ans-t-{{ $question->id }}">
+                    <p class="quiz-result-title quiz-result-title-succeeded">正解！</p>
+                    <p class="quiz-result-explanation">
+                        正解は「{{ optional($question->choices->where('valid', '=', 1)->first())->name }}」です！</p>
 
-        </div>
-    </div>
+                </div>
+                <div class="quiz-result" id="ans-f-{{ $question->id }}">
+                    <p class="quiz-result-title quiz-result-title-failed">不正解！</p>
+                    <p class="quiz-result-explanation">
+                        正解は「{{ optional($question->choices->where('valid', '=', 1)->first())->name }}」です！</p>
+
+
+                </div>
+            </div>
         @endforeach
     </section>
     <script src="/js/quizy.js"></script>
 </body>
 
 </html>
-

@@ -7,12 +7,10 @@ use Illuminate\Http\Request;
 
 class QuizyController extends Controller
 {
-    public function index($id){
+    public function index($id)
+    {
         $big_question = BigQuestions::find($id);
 
-    return view('hello.quiz',compact('id','big_question'));
-
+        return view('hello.quiz', compact('id', 'big_question'));
     }
 }
-
-

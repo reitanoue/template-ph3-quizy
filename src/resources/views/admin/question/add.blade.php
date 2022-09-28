@@ -15,17 +15,25 @@
             <h3 style="margin-bottom: 0; font-size: 16px;">問題の画像</h3>
             <input type="file" name="file">
             <h3 style="margin-bottom: 0; font-size: 16px;">問題の選択肢</h3>
-            <label for="quizChoice1">
-                <input type="text" name="choice" value= '1' id='quizChoice1'>
-
-            </label>
-            <label for="quizChoice2">
-                <input type="text" name="choice" value= '0' id="quizChoice2">
-            </label>
-            <label for="quizChoice3">
-                <input type="text" name="choice" value= '0' id="quizChoice3">
-            </label>
         </div>
+            <table>
+                <tr>
+                    <th>選択肢</th>
+                    <th>正解の場合チェック</th>
+                </tr>
+                <tr>
+                    <td><input type="text" name="name1"></td>
+                    <td><input type="radio" name="valid" value="1"></td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="name2"></td>
+                    <td><input type="radio" name="valid" value="2"></td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="name3"></td>
+                    <td><input type="radio" name="valid" value="3"></td>
+                </tr>
+            </table>
         <input type="submit" value="追加">
     </form>
 </body>
