@@ -12,10 +12,11 @@
     <ul>
         @foreach  ($big_question->questions as $question)
             <li>
+                <div><a href="/admin/question/delete/{{ $question->id }}">小問削除</a></div>
+                <div><a href="/admin/question/edit/{{ $big_question->id }}">小問編集</a></div>
                 <a>
                     <img src="{{ asset('image/' . $question->image) }}" width="200">
                 </a>
-                <div><a href="/admin/question/delete/{{ $question->id }}">小問削除</a></div>
             </li>
         @endforeach
     </ul>

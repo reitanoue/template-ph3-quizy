@@ -78,6 +78,17 @@ Route::post(
     'AdminController@questionDelete'
 );
 
+
+Route::get(
+    '/admin/question/edit/{id}',
+    'AdminController@questionEditIndex'
+)->name('admin.question.edit');
+
+Route::post(
+    '/admin/question/edit/{id}',
+    'AdminController@questionEdit'
+);
+
 Route::get(
     '/admin/question/add/{id}',
     'AdminController@questionAddIndex'

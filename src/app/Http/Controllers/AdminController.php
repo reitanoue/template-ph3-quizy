@@ -85,19 +85,45 @@ class AdminController extends Controller
         $question = Questions::find($id);
         $big_question_id = $question->big_question_id;
         $question->delete();
-        return redirect()->route('admin.questionAdmin',['big_question_id'=>$big_question_id]);
+        return redirect()->route('admin.questionAdmin', ['big_question_id' => $big_question_id]);
+    }
+
+    //小問編集
+    public function questionEditIndex($id)
+    {
+
+        $big_question = BigQuestions::find($id);
+        $question = Questions::find($id);
+
+        return view('admin.question.edit', compact('big_question', 'question'));
+    }
+    public function questionEdit(Request $request, $id)
+    {
+        $question = Questions::find($id);
+        $choices = Questions::find($id)->choice;
+        foreach ((array)$choices as $index => $choice) {
+            $choice->name = $request->{'name'.$index};
+            if ($index === intval($request->valid)) {
+                $choice->valid = true;
+            } else {
+                $choice->valid = false;
+            }
+            $choice->save();
+        }
+        $big_question_id = $question->big_question_id;
+        return redirect()->route('admin.questionAdmin', ['big_question_id' => $big_question_id]);
     }
 
     // 小問追加
     public function questionAddIndex($id)
     {
         $big_question = BigQuestions::find($id);
-        return view('admin.question.add' , compact('big_question'));
+        return view('admin.question.add', compact('big_question'));
     }
-    public function questionAdd(Request $request,$id)
+    public function questionAdd(Request $request, $id)
     {
         $file = $request->file;
-        $fileName = $request->{'name'.$request->valid} . '.png';
+        $fileName = $request->{'name' . $request->valid} . '.png';
         $path = public_path('image/');
         $file->move($path, $fileName);
 
@@ -105,8 +131,9 @@ class AdminController extends Controller
         $question->big_question_id = $id;
         $question->image = $fileName;
         $question->save();
-        $question->save();
-        $question->choices()->saveMany([
+
+        //intval($request->valid)には1,2,3のいずれかが整数として入り、それを===1,2,3で比較して同じならtrueが返される→validに1が入る
+            $question->choices()->saveMany([
             new Choices([
                 'name' => $request->name1,
                 'valid' => intval($request->valid) === 1,
@@ -121,6 +148,6 @@ class AdminController extends Controller
             ]),
         ]);
         $big_question_id = $question->big_question_id;
-        return redirect()->route('admin.questionAdmin',['big_question_id'=>$big_question_id]);
+        return redirect()->route('admin.questionAdmin', ['big_question_id' => $big_question_id]);
     }
 }
